@@ -6,12 +6,13 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyDLPjTiEgpHRR0CsijOnhMZHpmt74AccJ0",
+  authDomain: "gavina-auth.firebaseapp.com",
+  projectId: "gavina-auth",
+  storageBucket: "gavina-auth.firebasestorage.app",
+  messagingSenderId: "10663800245",
+  appId: "1:10663800245:web:9d676463ea5c535f06bdfc",
+  measurementId: "G-CXT7C4L5Y1"
 };
 
 // Initialize Firebase
