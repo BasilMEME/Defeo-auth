@@ -1,20 +1,26 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDLPjTiEgpHRR0CsijOnhMZHpmt74AccJ0",
-  authDomain: "gavina-auth.firebaseapp.com",
-  projectId: "gavina-auth",
-  storageBucket: "gavina-auth.firebasestorage.app",
-  messagingSenderId: "10663800245",
-  appId: "1:10663800245:web:9d676463ea5c535f06bdfc",
-  measurementId: "G-CXT7C4L5Y1"
+  apiKey: "AIzaSyDfR1P1YEByn2cshWA22GI1q-7dLeaLvqw",
+  authDomain: "defeo-auth.firebaseapp.com",
+  projectId: "defeo-auth",
+  storageBucket: "defeo-auth.firebasestorage.app",
+  messagingSenderId: "736257172299",
+  appId: "1:736257172299:web:70d9c518627a7b683d3ece",
+  measurementId: "G-W2J08BT211"
 };
 
-// Initialize Firebase
+// Initialize Firebase app
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+
+// Initialize providers
+export const auth = getAuth(app); // ✅ pass app
+export const googleProvider = new GoogleAuthProvider();
+export const githubProvider = new GithubAuthProvider();

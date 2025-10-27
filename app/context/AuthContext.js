@@ -1,40 +1,33 @@
-import { useContext, createContext, useState, useEffect } from "react";
-import {
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-} from "firebase/auth";
-import { auth } from "../firebase";
+"use client";
+import { createContext, useContext, useEffect, useState } from "react";
+import { onAuthStateChanged, signOut, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, githubProvider } from "../firebase";
 
 const AuthContext = createContext();
 
+export const UserAuth = () => useContext(AuthContext);
+
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
-  };
-
-  const logOut = () => {
-    signOut(auth);
-  };
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user || null);
+      setLoading(false);
     });
     return () => unsubscribe();
-  }, [user]);
+  }, []);
+
+  const googleSignIn = () => signInWithPopup(auth, googleProvider);
+  const githubSignIn = () => signInWithPopup(auth, githubProvider);
+  const logOut = () => signOut(auth);
 
   return (
-    <AuthContext.Provider value={{ user, googleSignIn, logOut }}>
-      {children}
+    <AuthContext.Provider
+      value={{ user, loading, googleSignIn, githubSignIn, logOut }}
+    >
+      {!loading && children}
     </AuthContext.Provider>
   );
-};
-
-export const UserAuth = () => {
-  return useContext(AuthContext);
 };
